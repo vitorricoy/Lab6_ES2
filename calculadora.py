@@ -15,14 +15,6 @@ class Calculadora:
             raise Exception("Parâmetros não são números")
         return a - b
 
-    def subtrair(self, a, b):
-        try:
-            a = float(a)
-            b = float(b)
-        except ValueError:
-            raise Exception("Parâmetros não são números")
-        return a - b
-
     def multiplicar(self, a, b):
         try:
             a = float(a)
@@ -37,8 +29,8 @@ class Calculadora:
             b = float(b)
         except ValueError:
             raise Exception("Parâmetros não são números")
-        if b == 0:
-            raise Exception("Divisão por zero!")
+        """if b == 0:
+            raise Exception("Divisão por zero!")"""
         return a / b
 
     def elevar(self, a, b):
