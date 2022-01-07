@@ -1,5 +1,5 @@
 import unittest
-from calculadora import Calculadora
+from calculadora import Calculadora, CalculadoraException
 
 
 class TestCalculadora(unittest.TestCase):
@@ -7,38 +7,48 @@ class TestCalculadora(unittest.TestCase):
         self.calculadora = Calculadora()
 
     def test_string_invalida_adicionar(self):
-        self.assertRaises(Exception, lambda: self.calculadora.adicionar("a", "1"))
+        self.assertRaises(
+            CalculadoraException, lambda: self.calculadora.adicionar("a", "1")
+        )
 
     def test_string_valida_adicionar(self):
         self.assertEqual(3.0, self.calculadora.adicionar("2", "1"))
 
     def test_string_invalida_subtrair(self):
-        self.assertRaises(Exception, lambda: self.calculadora.subtrair("a", "1"))
+        self.assertRaises(
+            CalculadoraException, lambda: self.calculadora.subtrair("a", "1")
+        )
 
     def test_string_valida_subtrair(self):
         self.assertEqual(1.0, self.calculadora.subtrair("2", "1"))
 
     def test_string_invalida_multiplicar(self):
-        self.assertRaises(Exception, lambda: self.calculadora.multiplicar("-", "1"))
+        self.assertRaises(
+            CalculadoraException, lambda: self.calculadora.multiplicar("-", "1")
+        )
 
     def test_string_valida_multiplicar(self):
         self.assertEqual(-2.0, self.calculadora.multiplicar("2", "-1"))
 
     def test_string_invalida_dividir(self):
-        self.assertRaises(Exception, lambda: self.calculadora.dividir("1", "b"))
+        self.assertRaises(
+            CalculadoraException, lambda: self.calculadora.dividir("1", "b")
+        )
 
     def test_string_valida_dividir(self):
         self.assertEqual(2.0, self.calculadora.dividir("2", "1"))
 
     def test_string_invalida_elevar(self):
-        self.assertRaises(Exception, lambda: self.calculadora.elevar("h", "b"))
+        self.assertRaises(
+            CalculadoraException, lambda: self.calculadora.elevar("h", "b")
+        )
 
     def test_string_valida_elevar(self):
         self.assertEqual(4.0, self.calculadora.elevar("2", "2"))
 
     def test_string_invalida_resolver_equacao_segundo_grau(self):
         self.assertRaises(
-            Exception,
+            CalculadoraException,
             lambda: self.calculadora.resolverEquacaoSegundoGrau("a", "b", "c"),
         )
 
@@ -49,7 +59,8 @@ class TestCalculadora(unittest.TestCase):
 
     def test_string_invalida_resolver_equacao_primeiro_grau(self):
         self.assertRaises(
-            Exception, lambda: self.calculadora.resolverEquacaoPrimeiroGrau("a", "b")
+            CalculadoraException,
+            lambda: self.calculadora.resolverEquacaoPrimeiroGrau("a", "b"),
         )
 
     def test_string_valida_resolver_equacao_primeiro_grau(self):
@@ -89,7 +100,7 @@ class TestCalculadora(unittest.TestCase):
         self.assertEqual(0.5, self.calculadora.dividir(-10, -20))
 
     def test_divisao_zero(self):
-        self.assertRaises(Exception, lambda: self.calculadora.dividir(10, 0))
+        self.assertRaises(CalculadoraException, lambda: self.calculadora.dividir(10, 0))
 
     def test_divisao_positivo_negativo(self):
         self.assertEqual(-0.5, self.calculadora.dividir(10, -20))
@@ -117,7 +128,8 @@ class TestCalculadora(unittest.TestCase):
 
     def test_equacao_segundo_grau_delta_negativo(self):
         self.assertRaises(
-            Exception, lambda: self.calculadora.resolverEquacaoSegundoGrau(1, 1, 1)
+            CalculadoraException,
+            lambda: self.calculadora.resolverEquacaoSegundoGrau(1, 1, 1),
         )
 
     def test_equacao_segundo_grau_delta_zero(self):
