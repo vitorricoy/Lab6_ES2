@@ -33,8 +33,8 @@ class Calculadora:
             b = float(b)
         except ValueError:
             raise CalculadoraException("Parâmetros não são números")
-        """if b == 0:
-            raise CalculadoraException("Divisão por zero!")"""
+        if b == 0:
+            raise CalculadoraException("Divisão por zero!")
         return a / b
 
     def elevar(self, a, b):
